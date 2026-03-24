@@ -1,101 +1,144 @@
-import { useState } from 'react'
-import { Link } from 'react-router'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { UserPlus, Eye, EyeOff } from "lucide-react";
 
 const Register = () => {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+  const navigate = useNavigate();
 
   const submitForm = (event) => {
-    event.preventDefault()
-
-    const payload = {
-      username,
-      email,
-      password,
-    }
-
-    console.log('Register payload:', payload)
-  }
+    event.preventDefault();
+    const payload = { username, email, password, confirmPassword };
+    console.log("Register payload:", payload);
+    // Add your registration logic here
+  };
 
   return (
-    <section className="min-h-screen bg-linear-to-br from-[#0f0f0f] via-[#1c1917] to-[#7c2d12] px-4 py-10 text-zinc-100 sm:px-6 lg:px-8">
-      <div className="mx-auto flex min-h-[85vh] w-full max-w-5xl items-center justify-center">
-        <div className="w-full max-w-md rounded-2xl border border-orange-400/30 bg-black/40 backdrop-blur-xl p-8 shadow-[0_0_40px_rgba(251,146,60,0.25)]">
-          
-          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-orange-400 to-yellow-500">
-            Create Account
-          </h1>
-
-          <p className="mt-2 text-sm text-zinc-300">
-            Register with your username, email, and password.
-          </p>
-
-          <form onSubmit={submitForm} className="mt-8 space-y-5">
-            <div>
-              <label htmlFor="username" className="mb-2 block text-sm font-medium text-zinc-200">
-                Username
-              </label>
-              <input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                placeholder="Choose a username"
-                required
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-900/60 px-4 py-3 text-zinc-100 outline-none transition focus:border-orange-400 focus:shadow-[0_0_0_3px_rgba(251,146,60,0.25)]"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-zinc-200">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="you@example.com"
-                required
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-900/60 px-4 py-3 text-zinc-100 outline-none transition focus:border-orange-400 focus:shadow-[0_0_0_3px_rgba(251,146,60,0.25)]"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="mb-2 block text-sm font-medium text-zinc-200">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                placeholder="Create a password"
-                required
-                className="w-full rounded-lg border border-zinc-700 bg-zinc-900/60 px-4 py-3 text-zinc-100 outline-none transition focus:border-orange-400 focus:shadow-[0_0_0_3px_rgba(251,146,60,0.25)]"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-linear-to-r from-orange-400 to-yellow-500 px-4 py-3 font-semibold text-black transition hover:from-orange-300 hover:to-yellow-400 focus:outline-none focus:shadow-[0_0_0_3px_rgba(251,146,60,0.35)]"
-            >
-              Register
-            </button>
-          </form>
-
-          <p className="mt-6 text-center text-sm text-zinc-300">
-            Already have an account?{' '}
-            <Link to="/login" className="font-semibold text-orange-400 transition hover:text-orange-300">
-              Login
-            </Link>
-          </p>
-
+    <section className="min-h-screen bg-black flex items-center justify-center px-4 py-12">
+      {/* The Main Card Container */}
+      <div className="w-full max-w-[480px] bg-[#1a1c1c] rounded-[32px] p-10 flex flex-col items-center shadow-2xl border border-white/5">
+        
+        {/* Top Icon Section */}
+        <div className="mb-6 p-3 bg-[#202222] border border-white/10 rounded-2xl text-[#21b3cc]">
+          <UserPlus size={26} strokeWidth={1.5} />
         </div>
+
+        {/* Header Text */}
+        <div className="text-center mb-8">
+          <h1 className="text-[32px] font-extrabold text-white tracking-tight leading-tight">
+            Create your account
+          </h1>
+          <p className="mt-2 text-[#8e9191] text-[15px] font-medium px-4">
+            Join the next generation of knowledge discovery.
+          </p>
+        </div>
+
+        {/* Register Form */}
+        <form onSubmit={submitForm} className="w-full space-y-5">
+          
+          {/* Username Field */}
+          <div className="flex flex-col gap-2">
+            <label className="text-[13px] font-semibold text-[#8e9191] ml-1">
+              Username
+            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Choose a cool username"
+              required
+              className="w-full bg-[#202222] rounded-2xl px-5 py-4 text-white placeholder-[#4d4f4f] outline-none border border-transparent focus:border-[#21b3cc]/30 transition-all"
+            />
+          </div>
+
+          {/* Email Field */}
+          <div className="flex flex-col gap-2">
+            <label className="text-[13px] font-semibold text-[#8e9191] ml-1">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              className="w-full bg-[#202222] rounded-2xl px-5 py-4 text-white placeholder-[#4d4f4f] outline-none border border-transparent focus:border-[#21b3cc]/30 transition-all"
+            />
+          </div>
+
+          {/* Password Field */}
+          <div className="flex flex-col gap-2">
+            <label className="text-[13px] font-semibold text-[#8e9191] ml-1">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Min 8 characters"
+                required
+                className="w-full bg-[#202222] rounded-2xl px-5 py-4 text-white placeholder-[#4d4f4f] outline-none border border-transparent focus:border-[#21b3cc]/30 transition-all"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-[#4d4f4f] hover:text-zinc-300 transition-colors"
+              >
+                {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Confirm Password Field */}
+          <div className="flex flex-col gap-2">
+            <label className="text-[13px] font-semibold text-[#8e9191] ml-1">
+              Confirm Password
+            </label>
+            <div className="relative">
+              <input
+                type={showConfirmPass ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Confirm your password"
+                required
+                className="w-full bg-[#202222] rounded-2xl px-5 py-4 text-white placeholder-[#4d4f4f] outline-none border border-transparent focus:border-[#21b3cc]/30 transition-all"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPass(!showConfirmPass)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-[#4d4f4f] hover:text-zinc-300 transition-colors"
+              >
+                {showConfirmPass ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Create Account Button */}
+          <button
+            type="submit"
+            className="w-full bg-[#2dbcd4] hover:bg-[#38cade] text-[#0a2327] font-bold py-4 rounded-2xl transition-colors mt-4 text-[16px]"
+          >
+            Create Account
+          </button>
+        </form>
+
+        {/* Footer Link */}
+        <p className="mt-8 text-center text-[14px] font-medium text-[#8e9191]">
+          Already have an account?{" "}
+          <Link to="/login" className="font-bold text-[#21b3cc] hover:underline">
+            Log in
+          </Link>
+        </p>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
