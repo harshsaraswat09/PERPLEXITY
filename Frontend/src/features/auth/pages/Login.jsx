@@ -34,7 +34,7 @@ const Login = () => {
         
         {/* Top Icon Section */}
         <div className="mb-8 p-3 bg-[#202222] border border-white/10 rounded-2xl text-[#21b3cc]">
-          <LogIn size={26} strokeWidth={1.5} />
+          <LogIn size={36} strokeWidth={1.5} />
         </div>
 
         {/* Header Text */}
@@ -115,7 +115,7 @@ const Login = () => {
 
         {/* Footer Link */}
         <p className="mt-10 text-center text-[14px] font-medium text-[#8e9191]">
-          New to your app?{" "}
+          New to Perplexity?{" "}
           <Link to="/register" className="font-bold text-[#21b3cc] hover:underline">
             Create an account
           </Link>
